@@ -20,24 +20,16 @@ create table tenis_match(
     sifra int not null primary key auto_increment,
     igrac1 int not null,
     igrac2 int not null,
-    tenis_set varchar(50) not null,
-    tenis_gem varchar(50) not null,
-    datumigranja datetime
-);
-
-create table kolo(
-    sifra int not null primary key auto_increment,
-    brojkola varchar(50) not null,
-    tenis_match int
+    rezultat varchar(50),
+    datumigranja datetime,
+    pobjednik int not null
 );
 
 alter table red add foreign key (igrac) references igrac(sifra);
 
 alter table tenis_match add foreign key (igrac1) references igrac(sifra);
 alter table tenis_match add foreign key (igrac2) references igrac(sifra);
-
-alter table kolo add foreign key (tenis_match) references tenis_match(sifra);
-
+alter table tenis_match add foreign key (pobjednik) references igrac(sifra);
 
 insert into igrac(sifra,ime,prezime) values
 (null,'Stjepan','Groznica'),
@@ -60,13 +52,3 @@ insert into igrac(sifra,ime,prezime) values
 (null,'Steve','Johnson'),
 (null,'Denis','Shapovalov'),
 (null,'Pero','Perić');
-
-insert into red(sifra,brojreda,igrac) values
-(null,'1',1),
-(null,'1',2);
-
-insert into tenis_match(sifra,igrac1,igrac2,tenis_set,tenis_gem,datumigranja) values
-(null,1,2,'3','6:3,2:6,7:5','2021-11-17');
-
-insert into kolo(sifra,brojkola,tenis_match) values
-(null,'1',1);
