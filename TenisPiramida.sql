@@ -20,9 +20,9 @@ create table tenis_match(
     sifra int not null primary key auto_increment,
     igrac1 int not null,
     igrac2 int not null,
-    rezultat varchar(50),
     datumigranja datetime,
-    pobjednik int not null
+    rezultat varchar(50),
+    pobjednik int
 );
 
 alter table red add foreign key (igrac) references igrac(sifra);
@@ -52,3 +52,18 @@ insert into igrac(sifra,ime,prezime) values
 (null,'Steve','Johnson'),
 (null,'Denis','Shapovalov'),
 (null,'Pero','Perić');
+
+
+insert into tenis_match(sifra,igrac1,igrac2,rezultat,datumigranja,pobjednik) values
+(null,1,2,'6:4,2:6,7:5','2021-11-25',1),
+(null,3,4,'2:6,1:6','2021-11-26',2);
+
+insert into red(sifra,brojreda,igrac) values
+(null,1,1),
+(null,1,2),
+(null,2,3),
+(null,2,4);
+
+update igrac set oib='80482522016', brojmobitela='0981335687' where sifra=1;
+
+update igrac set oib='26456987612', brojmobitela='0926875246' where sifra=2;
