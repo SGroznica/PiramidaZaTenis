@@ -21,6 +21,7 @@ create table tenis_match(
     igrac1 int not null,
     igrac2 int not null,
     datumigranja datetime,
+    teren varchar(50),
     rezultat varchar(50),
     pobjednik int
 );
@@ -37,7 +38,7 @@ insert into igrac(sifra,ime,prezime) values
 (null,'Roger','Federer'),
 (null,'Rafael','Nadal'),
 (null,'Novak','Djoković'),
-(null,'Borna','Ćosić'),
+(null,'Borna','Ćorić'),
 (null,'Mario','Ančić'),
 (null,'Andre','Agassi'),
 (null,'Ivan','Ljubičić'),
