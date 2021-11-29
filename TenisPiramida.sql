@@ -52,7 +52,14 @@ insert into igrac(sifra,ime,prezime) values
 (null,'Andy','Murray'),
 (null,'Steve','Johnson'),
 (null,'Denis','Shapovalov'),
-(null,'Pero','Perić');
+(null,'Pero','Perić'),
+(null,'Toni','Tieško'),
+(null,'Filip','Vrban'),
+(null,'Joip','Krstić'),
+(null,'Tomislav','Josipović'),
+(null,'Matej','Marković'),
+(null,'Petar','Filipović');
+
 
 
 insert into tenis_match(sifra,igrac1,igrac2,datumigranja,teren,rezultat,pobjednik) values
