@@ -58,9 +58,11 @@ insert into igrac(sifra,ime,prezime) values
 (null,'Joip','Krstić'),
 (null,'Tomislav','Josipović'),
 (null,'Matej','Marković'),
-(null,'Petar','Filipović');
-
-
+(null,'Petar','Filipović'),
+(null,'Janko','Marko'),
+(null,'Josip','Martin'),
+(null,'Kristijan','Blažević'),
+(null,'Goran','Cerić');
 
 insert into tenis_match(sifra,igrac1,igrac2,datumigranja,teren,rezultat,pobjednik) values
 (null,1,3,'2021-11-25','Olimpija','6:4,2:6,7:5',1),
@@ -76,20 +78,30 @@ insert into red(sifra,brojreda,igrac) values
 (null,2,4),
 (null,2,5),
 (null,2,6),
-(null,3,7),
-(null,3,8),
+(null,2,7),
+(null,2,8),
 (null,3,9),
 (null,3,10),
 (null,3,11),
 (null,3,12),
-(null,4,13),
-(null,4,14),
-(null,4,15),
-(null,4,16),
+(null,3,13),
+(null,3,14),
+(null,3,15),
+(null,3,16),
 (null,4,17),
 (null,4,18),
 (null,4,19),
-(null,4,20);
+(null,4,20),
+(null,4,21),
+(null,4,22),
+(null,4,23),
+(null,4,24),
+(null,4,25),
+(null,4,26),
+(null,4,27),
+(null,4,28),
+(null,4,29),
+(null,4,30);
 
 update igrac set oib='80482522016', brojmobitela='0981335687' where sifra=1;
 
