@@ -8,11 +8,11 @@ package piramidazatenis.util;
  *
  * @author stjep
  */
-public class ZavrsniRadException extends Exception {
+public class PiramidaZaTenisException extends Exception {
 
     private String poruka;
 
-    public ZavrsniRadException(String poruka) {
+    public PiramidaZaTenisException(String poruka) {
         super();
         this.poruka = poruka;
     }

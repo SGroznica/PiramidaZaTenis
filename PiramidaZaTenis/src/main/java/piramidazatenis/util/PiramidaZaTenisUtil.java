@@ -15,7 +15,7 @@ import us.codecraft.xsoup.Xsoup;
  *
  * @author stjep
  */
-public class ZavrsniUtil {
+public class PiramidaZaTenisUtil {
     
     public static String generirajOib(){
         try {
