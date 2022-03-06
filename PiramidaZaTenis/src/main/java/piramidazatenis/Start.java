@@ -7,19 +7,21 @@ package piramidazatenis;
 import org.hibernate.Session;
 import piramidazatenis.util.HibernateUtil;
 import piramidazatenis.util.PocetniInsert;
-
+import piramidazatenis.view.SplashScreen;
 
 public class Start {
-    
+
     private Session session;
-    
-    public Start(){
-        this.session = HibernateUtil.getSession();
+
+    public Start() {
+        
+        
+        //this.session = HibernateUtil.getSession();
         //PocetniInsert.izvedi();
     }
-    
+
     public static void main(String[] args) {
-        new Start();
+       new SplashScreen().setVisible(true);
     }
 
 }
