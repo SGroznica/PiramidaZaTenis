@@ -21,9 +21,9 @@ public class PocetniInsert {
         session.beginTransaction();
         Faker faker = new Faker();
         
-        //List<Igrac> igraci = generirajIgrace(faker, session);
+        List<Igrac> igraci = generirajIgrace(faker, session);
         
-        
+        session.getTransaction().commit();
     }
     
     private static List<Igrac> generirajIgrace(Faker faker, Session session){

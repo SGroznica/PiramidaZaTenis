@@ -17,6 +17,16 @@ import us.codecraft.xsoup.Xsoup;
  */
 public class PiramidaZaTenisUtil {
     
+    public static String operater="admin";
+    public static final String NAZIV_APP="Piramida za tenis";
+    
+    public static String getNaslov(String naslov){
+        if(operater==null){
+            return PiramidaZaTenisUtil.NAZIV_APP + " " + naslov;
+        }
+        return PiramidaZaTenisUtil.NAZIV_APP + " " + naslov + " " + operater;
+    }
+    
     public static String generirajOib(){
         try {
             URL url = new URL("http://oib.itcentrala.com/oib-generator/");

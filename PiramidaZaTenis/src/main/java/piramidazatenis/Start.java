@@ -16,12 +16,13 @@ public class Start {
     public Start() {
         
         
-        //this.session = HibernateUtil.getSession();
-        //PocetniInsert.izvedi();
+    
+        
     }
 
     public static void main(String[] args) {
        new SplashScreen().setVisible(true);
+       //PocetniInsert.izvedi();
     }
 
 }
