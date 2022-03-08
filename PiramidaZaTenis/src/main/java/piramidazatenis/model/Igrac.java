@@ -66,6 +66,11 @@ public class Igrac {
         this.brojmobitela = brojmobitela;
     }
 
+    @Override
+    public String toString() {
+         return ime + " " + prezime;
+    }
+
   
 
 
