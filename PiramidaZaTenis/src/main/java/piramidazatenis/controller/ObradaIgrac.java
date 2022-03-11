@@ -6,7 +6,6 @@ package piramidazatenis.controller;
 
 import java.util.List;
 import piramidazatenis.model.Igrac;
-import piramidazatenis.util.OibValidation;
 import piramidazatenis.util.PiramidaZaTenisException;
 
 /**
@@ -17,7 +16,7 @@ public class ObradaIgrac extends Obrada<Igrac> {
 
     @Override
     public List<Igrac> read() {
-       return session.createQuery("from Igrac a order by a.Ime").list();
+       return session.createQuery("from Igrac").list();
     }
 
     @Override
