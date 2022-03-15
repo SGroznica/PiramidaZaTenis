@@ -92,6 +92,7 @@ public class SplashScreen extends javax.swing.JFrame {
         pbUcitanje = new javax.swing.JProgressBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SplashScreen.jpg"))); // NOI18N
 
