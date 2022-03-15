@@ -5,15 +5,10 @@
 package piramidazatenis.model;
 
 import java.util.Date;
-import java.util.List;
-import javax.persistence.Access;
-import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -92,6 +87,11 @@ public class TennisMatch {
 
     public void setPobjednik(String pobjednik) {
         this.pobjednik = pobjednik;
+    }
+
+    @Override
+    public String toString() {
+        return igrac1 + " vs " + igrac2;
     }
 
     
