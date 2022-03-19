@@ -68,6 +68,7 @@ public class TennisMatchProzor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dateTimePicker1 = new com.github.lgooddatepicker.components.DateTimePicker();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstTennisMatch = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
@@ -78,13 +79,13 @@ public class TennisMatchProzor extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         cmbIgrac2 = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtTeren = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtRezultat = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtPobjednik = new javax.swing.JTextField();
+        dateTimePicker2 = new com.github.lgooddatepicker.components.DateTimePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -168,13 +169,13 @@ public class TennisMatchProzor extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(txtTeren, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(cmbIgrac2, javax.swing.GroupLayout.Alignment.LEADING, 0, 199, Short.MAX_VALUE))
                     .addComponent(jLabel5)
                     .addComponent(txtRezultat, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(txtPobjednik, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                    .addComponent(txtPobjednik, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dateTimePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,8 +196,8 @@ public class TennisMatchProzor extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dateTimePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtTeren, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -305,6 +306,8 @@ public class TennisMatchProzor extends javax.swing.JFrame {
     private javax.swing.JButton btnPromjeni;
     private javax.swing.JComboBox<Igrac> cmbIgrac1;
     private javax.swing.JComboBox<Igrac> cmbIgrac2;
+    private com.github.lgooddatepicker.components.DateTimePicker dateTimePicker1;
+    private com.github.lgooddatepicker.components.DateTimePicker dateTimePicker2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -312,7 +315,6 @@ public class TennisMatchProzor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JList<TennisMatch> lstTennisMatch;
     private javax.swing.JTextField txtPobjednik;
     private javax.swing.JTextField txtRezultat;
