@@ -4,7 +4,10 @@
  */
 package piramidazatenis.view;
 
+import com.github.lgooddatepicker.components.DatePickerSettings;
+import java.time.ZoneId;
 import java.util.List;
+import java.util.Locale;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -20,43 +23,63 @@ import piramidazatenis.util.PiramidaZaTenisUtil;
  * @author stjep
  */
 public class TennisMatchProzor extends javax.swing.JFrame {
-    
+
     private ObradaTennisMatch obrada;
+
     /**
      * Creates new form IgracProzor
      */
     public TennisMatchProzor() {
         initComponents();
-        obrada= new ObradaTennisMatch();
+        obrada = new ObradaTennisMatch();
         setTitle(PiramidaZaTenisUtil.getNaslov("Tennis Match"));
         ucitaj();
+        ucitajIgrace();
+       DatePickerSettings dps = new DatePickerSettings(new Locale("hr","HR"));
+        dps.setFormatForDatesCommonEra("dd.MM.yyyy");
+        dps.setTranslationClear("Očisti");
+        dps.setTranslationToday("Danas");
+        dpDatum.setSettings(dps);
         
-        
+
+    }
+    
+    private void ucitajIgrace(){
+       
         DefaultComboBoxModel<Igrac> ig = new DefaultComboBoxModel<>();
         Igrac igrac = new Igrac();
         igrac.setSifra(Long.valueOf(0));
+        igrac.setIme("Nije");
+        igrac.setPrezime("odabrano");
         ig.addElement(igrac);
-        new ObradaIgrac().read().forEach(s->{ig.addElement(s);});
+        new ObradaIgrac().read().forEach(s -> {
+            ig.addElement(s);
+        });
         cmbIgrac1.setModel(ig);
         
-        DefaultComboBoxModel<Igrac> ig1 = new DefaultComboBoxModel<>();
-        igrac.setSifra(Long.valueOf(0));
-        ig.addElement(igrac);
-        new ObradaIgrac().read().forEach(s->{ig1.addElement(s);});
-        cmbIgrac2.setModel(ig1);
         
+         DefaultComboBoxModel<Igrac> ig1 = new DefaultComboBoxModel<>();
+        Igrac igrac1=new Igrac();
+        igrac1.setSifra(Long.valueOf(0));
+        igrac1.setIme("Nije");
+        igrac1.setPrezime("odabrano");
+        ig1.addElement(igrac1);
+        new ObradaIgrac().read().forEach(s -> {
+            ig1.addElement(s);
+        });
+        cmbIgrac2.setModel(ig1);
     }
     
-    public void ucitaj(){
+    
+    public void ucitaj() {
         DefaultListModel<TennisMatch> m = new DefaultListModel<>();
         List<TennisMatch> tenismec = obrada.read();
-        
-        for(TennisMatch s: tenismec){
+
+        for (TennisMatch s : tenismec) {
             m.addElement(s);
         }
         lstTennisMatch.setModel(m);
-        
-     
+
     }
 
     /**
@@ -85,7 +108,7 @@ public class TennisMatchProzor extends javax.swing.JFrame {
         txtRezultat = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtPobjednik = new javax.swing.JTextField();
-        dateTimePicker2 = new com.github.lgooddatepicker.components.DateTimePicker();
+        dpDatum = new com.github.lgooddatepicker.components.DatePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -119,29 +142,11 @@ public class TennisMatchProzor extends javax.swing.JFrame {
             }
         });
 
-        cmbIgrac1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbIgrac1ActionPerformed(evt);
-            }
-        });
-
         jLabel2.setText("Igrač 2");
-
-        cmbIgrac2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbIgrac2ActionPerformed(evt);
-            }
-        });
 
         jLabel3.setText("Datum igranja");
 
         jLabel4.setText("Teren");
-
-        txtTeren.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTerenActionPerformed(evt);
-            }
-        });
 
         jLabel5.setText("Rezultat");
 
@@ -167,15 +172,15 @@ public class TennisMatchProzor extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtTeren, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(cmbIgrac2, javax.swing.GroupLayout.Alignment.LEADING, 0, 199, Short.MAX_VALUE))
                     .addComponent(jLabel5)
                     .addComponent(txtRezultat, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addComponent(txtPobjednik, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dateTimePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(dpDatum, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtTeren, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(cmbIgrac2, javax.swing.GroupLayout.Alignment.LEADING, 0, 199, Short.MAX_VALUE)))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,8 +201,8 @@ public class TennisMatchProzor extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dateTimePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
+                        .addComponent(dpDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtTeren, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -227,23 +232,43 @@ public class TennisMatchProzor extends javax.swing.JFrame {
         }
         obrada.setEntitet(lstTennisMatch.getSelectedValue());
         var e = obrada.getEntitet();
-       
-        
+        txtPobjednik.setText(e.getPobjednik());
+        txtRezultat.setText(e.getRezultat());
+        txtTeren.setText(e.getTeren());
+        if (e.getIgrac1() == null) {
+            cmbIgrac1.setSelectedIndex(0);
+        } else {
+            cmbIgrac1.setSelectedItem(e.getIgrac1());
+        }
+
+        if (e.getIgrac2() == null) {
+            cmbIgrac2.setSelectedIndex(0);
+        } else {
+            cmbIgrac2.setSelectedItem(e.getIgrac2());
+        }
+
+        if (e.getDatumigranja() != null) {
+            dpDatum.setDate(e.getDatumigranja().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        } else {
+            dpDatum.setDate(null);
+        }
+
+
     }//GEN-LAST:event_lstTennisMatchValueChanged
 
     private void btnKreirajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKreirajActionPerformed
-       try {
+        try {
             obrada.setEntitet(new TennisMatch());
             preuzmiVrijednosti();
             obrada.create();
             ucitaj();
         } catch (PiramidaZaTenisException ex) {
             JOptionPane.showMessageDialog(getRootPane(), ex.getPoruka());
-        } 
+        }
     }//GEN-LAST:event_btnKreirajActionPerformed
 
     private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
-       if (obrada.getEntitet() == null) {
+        if (obrada.getEntitet() == null) {
             JOptionPane.showMessageDialog(getRootPane(), "Prvo odaberite stavku");
             return;
         }
@@ -258,17 +283,17 @@ public class TennisMatchProzor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPromjeniActionPerformed
 
     private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiActionPerformed
-       if (obrada.getEntitet() == null) {
+        if (obrada.getEntitet() == null) {
             JOptionPane.showMessageDialog(getRootPane(), "Prvo odaberite stavku");
             return;
         }
-        
-        if(JOptionPane.showConfirmDialog(
+
+        if (JOptionPane.showConfirmDialog(
                 getRootPane(),
-                "Sigurno obrisati \"" + obrada.getEntitet() + "\"?", 
-                "Brisanje", 
-                JOptionPane.YES_NO_OPTION, 
-                JOptionPane.QUESTION_MESSAGE)==JOptionPane.NO_OPTION){
+                "Sigurno obrisati \"" + obrada.getEntitet() + "\"?",
+                "Brisanje",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE) == JOptionPane.NO_OPTION) {
             return;
         }
 
@@ -280,24 +305,15 @@ public class TennisMatchProzor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnObrisiActionPerformed
 
-    private void cmbIgrac1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbIgrac1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbIgrac1ActionPerformed
-
-    private void cmbIgrac2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbIgrac2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbIgrac2ActionPerformed
-
-    private void txtTerenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTerenActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTerenActionPerformed
-
     private void preuzmiVrijednosti() {
         var e = obrada.getEntitet();
         e.setIgrac1((Igrac) cmbIgrac1.getSelectedItem());
         e.setIgrac2((Igrac) cmbIgrac2.getSelectedItem());
-        
-       
+        //e.setDatumigranja(dpDatum.);
+        e.setPobjednik(txtPobjednik.getText());
+        e.setRezultat(txtRezultat.getText());
+        e.setTeren(txtTeren.getText());
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -307,7 +323,7 @@ public class TennisMatchProzor extends javax.swing.JFrame {
     private javax.swing.JComboBox<Igrac> cmbIgrac1;
     private javax.swing.JComboBox<Igrac> cmbIgrac2;
     private com.github.lgooddatepicker.components.DateTimePicker dateTimePicker1;
-    private com.github.lgooddatepicker.components.DateTimePicker dateTimePicker2;
+    private com.github.lgooddatepicker.components.DatePicker dpDatum;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
