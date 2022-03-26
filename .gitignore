@@ -1,1 +1,8 @@
 /PiramidaZaTenis/target/
+PiramidaZaTenis/lib/unknown/binary/LGoodDatePicker-11.2.1/SNAPSHOT/LGoodDatePicker-11.2.1-SNAPSHOT.jar
+*.form
+*.form
+PiramidaZaTenis/src/main/java/piramidazatenis/view/TennisMatchProzor.form
+PiramidaZaTenis/src/main/java/piramidazatenis/view/IgracProzor.form
+PiramidaZaTenis/src/main/java/piramidazatenis/view/Izbornik.form
+PiramidaZaTenis/src/main/java/piramidazatenis/view/TennisMatchProzor.form
