@@ -44,17 +44,17 @@
                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="txtTeren" alignment="0" max="32767" attributes="0"/>
-                      <Component id="cmbIgrac2" alignment="0" pref="199" max="32767" attributes="0"/>
-                  </Group>
                   <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="txtRezultat" min="-2" pref="199" max="-2" attributes="0"/>
                   <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="txtPobjednik" alignment="0" min="-2" pref="199" max="-2" attributes="0"/>
-                  <Component id="dateTimePicker2" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="dpDatum" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtTeren" alignment="0" max="32767" attributes="0"/>
+                      <Component id="cmbIgrac2" alignment="0" pref="199" max="32767" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="28" max="32767" attributes="0"/>
+              <EmptySpace pref="33" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -78,8 +78,8 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="dateTimePicker2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                      <Component id="dpDatum" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtTeren" min="-2" max="-2" attributes="0"/>
@@ -162,9 +162,6 @@
           <StringArray count="0"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbIgrac1ActionPerformed"/>
-      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Igrac&gt;"/>
       </AuxValues>
@@ -180,9 +177,6 @@
           <StringArray count="0"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbIgrac2ActionPerformed"/>
-      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Igrac&gt;"/>
       </AuxValues>
@@ -198,9 +192,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtTeren">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTerenActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
@@ -216,7 +207,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtPobjednik">
     </Component>
-    <Component class="com.github.lgooddatepicker.components.DateTimePicker" name="dateTimePicker2">
+    <Component class="com.github.lgooddatepicker.components.DatePicker" name="dpDatum">
     </Component>
   </SubComponents>
 </Form>

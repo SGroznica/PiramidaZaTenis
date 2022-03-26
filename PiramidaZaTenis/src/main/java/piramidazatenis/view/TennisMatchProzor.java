@@ -6,6 +6,7 @@ package piramidazatenis.view;
 
 import com.github.lgooddatepicker.components.DatePickerSettings;
 import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import javax.swing.DefaultComboBoxModel;
@@ -309,10 +310,20 @@ public class TennisMatchProzor extends javax.swing.JFrame {
         var e = obrada.getEntitet();
         e.setIgrac1((Igrac) cmbIgrac1.getSelectedItem());
         e.setIgrac2((Igrac) cmbIgrac2.getSelectedItem());
-        //e.setDatumigranja(dpDatum.);
         e.setPobjednik(txtPobjednik.getText());
         e.setRezultat(txtRezultat.getText());
         e.setTeren(txtTeren.getText());
+        if(dpDatum.getDate()!=null){
+             e.setDatumigranja(
+                Date.from(
+                        dpDatum.getDate().atStartOfDay().atZone(
+                                ZoneId.systemDefault()
+                        ).toInstant()
+                )
+        );
+        }else{
+            e.setDatumigranja(null);
+        }
 
     }
 
