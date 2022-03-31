@@ -4,17 +4,26 @@
  */
 package piramidazatenis.view;
 
+import piramidazatenis.controller.ObradaIgrac;
+import piramidazatenis.controller.ObradaRed;
+import piramidazatenis.util.PiramidaZaTenisUtil;
+
 /**
  *
  * @author stjep
  */
 public class RedProzor extends javax.swing.JFrame {
 
+    private ObradaRed obrada;
+    
     /**
      * Creates new form RedProzor
      */
     public RedProzor() {
         initComponents();
+        obrada= new ObradaRed();
+        setTitle(PiramidaZaTenisUtil.getNaslov("Redovi"));
+        
     }
 
     /**
@@ -27,11 +36,11 @@ public class RedProzor extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtRed = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtRed.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"1", null, null, null, null},
                 {"2", null, null, null, null},
@@ -68,22 +77,23 @@ public class RedProzor extends javax.swing.JFrame {
                 "Broj reda", "Igrač", "Igrač", "Igrač", "Igrač"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtRed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(22, 22, 22)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 13, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -97,6 +107,6 @@ public class RedProzor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jtRed;
     // End of variables declaration//GEN-END:variables
 }
