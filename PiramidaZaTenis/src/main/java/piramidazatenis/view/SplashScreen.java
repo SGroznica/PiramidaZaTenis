@@ -6,7 +6,10 @@ package piramidazatenis.view;
 
 import javax.swing.JOptionPane;
 import org.hibernate.Session;
+import piramidazatenis.controller.Obrada;
+import piramidazatenis.controller.ObradaIgrac;
 import piramidazatenis.util.HibernateUtil;
+import piramidazatenis.util.PocetniInsert;
 
 /**
  *
@@ -60,6 +63,9 @@ public class SplashScreen extends javax.swing.JFrame {
         public void run() {
             Session s = HibernateUtil.getSession();
             if (s.getMetamodel().getEntities().size() > 0) {
+                if(new ObradaIgrac().read().isEmpty()){
+                    PocetniInsert.izvedi();
+                }
                 hibernateGotov = true;
                 for (int t = i; t < 100; t++) {
                     try {
