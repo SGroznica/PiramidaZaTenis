@@ -5,10 +5,12 @@
 package piramidazatenis.model;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -30,7 +32,9 @@ public class TennisMatch {
     private String teren;
     private String rezultat;
     private String pobjednik;
-
+    @ManyToMany
+    private List<Igrac> igraci;
+    
     public Long getSifra() {
         return sifra;
     }
@@ -94,7 +98,14 @@ public class TennisMatch {
         return igrac1 + " vs " + igrac2;
     }
 
-    
+    public List<Igrac> getIgraci() {
+        return igraci;
+    }
+
+    public void setIgraci(List<Igrac> igraci) {
+        this.igraci = igraci;
+    }
+
 
   
 
