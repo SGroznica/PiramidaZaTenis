@@ -64,7 +64,7 @@ public class SplashScreen extends javax.swing.JFrame {
             Session s = HibernateUtil.getSession();
             if (s.getMetamodel().getEntities().size() > 0) {
                 if(new ObradaIgrac().read().isEmpty()){
-                    PocetniInsert.izvedi();
+                    PocetniInsert.inicijalniPodaci();
                 }
                 hibernateGotov = true;
                 for (int t = i; t < 100; t++) {
