@@ -5,6 +5,7 @@
 package piramidazatenis.view;
 
 import java.awt.event.KeyEvent;
+import java.util.Collections;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -47,6 +48,7 @@ public class IgracProzor extends javax.swing.JFrame {
         lstIgraci.setModel(m);
         
     }
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -77,6 +79,9 @@ public class IgracProzor extends javax.swing.JFrame {
         chbPrezime = new javax.swing.JCheckBox();
         jScrollPane2 = new javax.swing.JScrollPane();
         lstTennisMatch = new javax.swing.JList<>();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtBrojmobitela1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -141,8 +146,8 @@ public class IgracProzor extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel5.setText("Traži po imenu, prezimenu ili OIB-u.");
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
 
         chbPrezime.setText("Početak prezimena");
 
@@ -179,6 +184,10 @@ public class IgracProzor extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(lstTennisMatch);
 
+        jLabel6.setText("Odigrani matchevi");
+
+        jLabel7.setText("Red");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -198,12 +207,16 @@ public class IgracProzor extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(txtBrojmobitela, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtOib, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtOib, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtBrojmobitela1, javax.swing.GroupLayout.Alignment.LEADING))
                     .addComponent(jLabel2)
                     .addComponent(txtPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
                 .addGap(58, 58, 58))
         );
         layout.setVerticalGroup(
@@ -214,10 +227,11 @@ public class IgracProzor extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(58, 58, 58)
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -233,7 +247,11 @@ public class IgracProzor extends javax.swing.JFrame {
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtBrojmobitela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtBrojmobitela1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(24, 24, 24)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(btnKreiraj)
                                     .addComponent(btnPromjeni)
@@ -264,6 +282,15 @@ public class IgracProzor extends javax.swing.JFrame {
         txtPrezime.setText(e.getPrezime());
         txtOib.setText(e.getOib());
         txtBrojmobitela.setText(e.getBrojmobitela());
+        
+        
+        DefaultListModel<TennisMatch> m = new DefaultListModel<>();
+        if (e.getTennisMatch()!= null) {
+           
+            e.getTennisMatch().forEach(p->{m.addElement(p);});
+            m.addAll(e.getTennisMatch());
+        }
+        lstTennisMatch.setModel(m);
         
     }//GEN-LAST:event_lstIgraciValueChanged
 
@@ -346,12 +373,15 @@ public class IgracProzor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JList<Igrac> lstIgraci;
     private javax.swing.JList<TennisMatch> lstTennisMatch;
     private javax.swing.JTextField txtBrojmobitela;
+    private javax.swing.JTextField txtBrojmobitela1;
     private javax.swing.JTextField txtIme;
     private javax.swing.JTextField txtOib;
     private javax.swing.JTextField txtPrezime;
