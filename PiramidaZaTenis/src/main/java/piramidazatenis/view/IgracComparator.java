@@ -12,7 +12,7 @@ import piramidazatenis.model.Igrac;
  *
  * @author stjep
  */
-public abstract class IgracComparator implements Comparable<Igrac>{
+public final class IgracComparator implements Comparable<Igrac>{
      private Collator hr;
 
     public IgracComparator() {
@@ -23,5 +23,10 @@ public abstract class IgracComparator implements Comparable<Igrac>{
 
     public int compareTo(Igrac o1, Igrac o2) {
         return hr.compare(o1.getPrezime(), o2.getPrezime());
+    }
+
+    @Override
+    public int compareTo(Igrac o) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
