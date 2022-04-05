@@ -283,14 +283,7 @@ public class IgracProzor extends javax.swing.JFrame {
         txtOib.setText(e.getOib());
         txtBrojmobitela.setText(e.getBrojmobitela());
         
-        
-        DefaultListModel<TennisMatch> m = new DefaultListModel<>();
-        if (e.getTennisMatch()!= null) {
-           
-            e.getTennisMatch().forEach(p->{m.addElement(p);});
-            m.addAll(e.getTennisMatch());
-        }
-        lstTennisMatch.setModel(m);
+      
         
     }//GEN-LAST:event_lstIgraciValueChanged
 

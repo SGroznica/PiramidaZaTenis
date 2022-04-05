@@ -31,9 +31,8 @@ public class TennisMatch {
     private Date datumigranja;
     private String teren;
     private String rezultat;
-    private String pobjednik;
-    @ManyToMany
-    private List<Igrac> igraci;
+    @OneToOne
+    private Igrac pobjednik;
     
     public Long getSifra() {
         return sifra;
@@ -85,27 +84,20 @@ public class TennisMatch {
         this.rezultat = rezultat;
     }
 
-    public String getPobjednik() {
+    public Igrac getPobjednik() {
         return pobjednik;
     }
 
-    public void setPobjednik(String pobjednik) {
+    public void setPobjednik(Igrac pobjednik) {
         this.pobjednik = pobjednik;
     }
+
+   
 
     @Override
     public String toString() {
         return igrac1 + " vs " + igrac2;
     }
-
-    public List<Igrac> getIgraci() {
-        return igraci;
-    }
-
-    public void setIgraci(List<Igrac> igraci) {
-        this.igraci = igraci;
-    }
-
 
   
 

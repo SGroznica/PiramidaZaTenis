@@ -56,7 +56,7 @@ public class TennisMatchProzor extends javax.swing.JFrame {
         new ObradaIgrac().read().forEach(s -> {
             ig.addElement(s);
         });
-        cmbIgrac1.setModel(ig);
+        cmbNapada.setModel(ig);
         
         
          DefaultComboBoxModel<Igrac> ig1 = new DefaultComboBoxModel<>();
@@ -68,7 +68,7 @@ public class TennisMatchProzor extends javax.swing.JFrame {
         new ObradaIgrac().read().forEach(s -> {
             ig1.addElement(s);
         });
-        cmbIgrac2.setModel(ig1);
+        cmbBrani.setModel(ig1);
     }
     
     
@@ -99,17 +99,17 @@ public class TennisMatchProzor extends javax.swing.JFrame {
         btnKreiraj = new javax.swing.JButton();
         btnPromjeni = new javax.swing.JButton();
         btnObrisi = new javax.swing.JButton();
-        cmbIgrac1 = new javax.swing.JComboBox<>();
+        cmbNapada = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        cmbIgrac2 = new javax.swing.JComboBox<>();
+        cmbBrani = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtTeren = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtRezultat = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtPobjednik = new javax.swing.JTextField();
         dpDatum = new com.github.lgooddatepicker.components.DatePicker();
+        cmbPobjednik = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -120,7 +120,7 @@ public class TennisMatchProzor extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(lstTennisMatch);
 
-        jLabel1.setText("Igrač 1");
+        jLabel1.setText("Napada:");
 
         btnKreiraj.setText("Kreiraj");
         btnKreiraj.addActionListener(new java.awt.event.ActionListener() {
@@ -143,7 +143,7 @@ public class TennisMatchProzor extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Igrač 2");
+        jLabel2.setText("Brani:");
 
         jLabel3.setText("Datum igranja");
 
@@ -169,19 +169,19 @@ public class TennisMatchProzor extends javax.swing.JFrame {
                         .addComponent(btnPromjeni)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnObrisi))
-                    .addComponent(cmbIgrac1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbNapada, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
                     .addComponent(txtRezultat, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(txtPobjednik, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(dpDatum, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtTeren, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(cmbIgrac2, javax.swing.GroupLayout.Alignment.LEADING, 0, 199, Short.MAX_VALUE)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                        .addComponent(cmbBrani, javax.swing.GroupLayout.Alignment.LEADING, 0, 199, Short.MAX_VALUE))
+                    .addComponent(cmbPobjednik, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,11 +194,11 @@ public class TennisMatchProzor extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbIgrac1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbNapada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbIgrac2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbBrani, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -213,8 +213,8 @@ public class TennisMatchProzor extends javax.swing.JFrame {
                         .addComponent(txtRezultat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
                         .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPobjednik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addComponent(cmbPobjednik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnKreiraj)
@@ -233,19 +233,19 @@ public class TennisMatchProzor extends javax.swing.JFrame {
         }
         obrada.setEntitet(lstTennisMatch.getSelectedValue());
         var e = obrada.getEntitet();
-        txtPobjednik.setText(e.getPobjednik());
+        //txtPobjednik.setText(e.getPobjednik());
         txtRezultat.setText(e.getRezultat());
         txtTeren.setText(e.getTeren());
         if (e.getIgrac1() == null) {
-            cmbIgrac1.setSelectedIndex(0);
+            cmbNapada.setSelectedIndex(0);
         } else {
-            cmbIgrac1.setSelectedItem(e.getIgrac1());
+            cmbNapada.setSelectedItem(e.getIgrac1());
         }
 
         if (e.getIgrac2() == null) {
-            cmbIgrac2.setSelectedIndex(0);
+            cmbBrani.setSelectedIndex(0);
         } else {
-            cmbIgrac2.setSelectedItem(e.getIgrac2());
+            cmbBrani.setSelectedItem(e.getIgrac2());
         }
 
         if (e.getDatumigranja() != null) {
@@ -253,7 +253,11 @@ public class TennisMatchProzor extends javax.swing.JFrame {
         } else {
             dpDatum.setDate(null);
         }
-
+        /*if (e.getPobjednik()== null) {
+            cmbPobjednik.setSelectedIndex(0);
+        } else {
+            cmbPobjednik.setSelectedItem(e.getIgrac1());
+        }*/
 
     }//GEN-LAST:event_lstTennisMatchValueChanged
 
@@ -308,9 +312,9 @@ public class TennisMatchProzor extends javax.swing.JFrame {
 
     private void preuzmiVrijednosti() {
         var e = obrada.getEntitet();
-        e.setIgrac1((Igrac) cmbIgrac1.getSelectedItem());
-        e.setIgrac2((Igrac) cmbIgrac2.getSelectedItem());
-        e.setPobjednik(txtPobjednik.getText());
+        e.setIgrac1((Igrac) cmbNapada.getSelectedItem());
+        e.setIgrac2((Igrac) cmbBrani.getSelectedItem());
+        e.setPobjednik((Igrac) cmbPobjednik.getSelectedItem());
         e.setRezultat(txtRezultat.getText());
         e.setTeren(txtTeren.getText());
         if(dpDatum.getDate()!=null){
@@ -331,8 +335,9 @@ public class TennisMatchProzor extends javax.swing.JFrame {
     private javax.swing.JButton btnKreiraj;
     private javax.swing.JButton btnObrisi;
     private javax.swing.JButton btnPromjeni;
-    private javax.swing.JComboBox<Igrac> cmbIgrac1;
-    private javax.swing.JComboBox<Igrac> cmbIgrac2;
+    private javax.swing.JComboBox<Igrac> cmbBrani;
+    private javax.swing.JComboBox<Igrac> cmbNapada;
+    private javax.swing.JComboBox<Igrac> cmbPobjednik;
     private com.github.lgooddatepicker.components.DateTimePicker dateTimePicker1;
     private com.github.lgooddatepicker.components.DatePicker dpDatum;
     private javax.swing.JLabel jLabel1;
@@ -343,7 +348,6 @@ public class TennisMatchProzor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<TennisMatch> lstTennisMatch;
-    private javax.swing.JTextField txtPobjednik;
     private javax.swing.JTextField txtRezultat;
     private javax.swing.JTextField txtTeren;
     // End of variables declaration//GEN-END:variables

@@ -29,8 +29,7 @@ public class Igrac {
     private String brojmobitela;
     @ManyToOne
     private Red red;
-    @ManyToMany(mappedBy = "igraci")
-    private List<TennisMatch> tennisMatch;
+    
   
 
     public Long getSifra() {
@@ -77,22 +76,5 @@ public class Igrac {
     public String toString() {
          return ime + " " + prezime;
     }
-
-    public List<TennisMatch> getTennisMatch() {
-        return tennisMatch;
-    }
-
-    public void setTennisMatch(List<TennisMatch> tennisMatch) {
-        this.tennisMatch = tennisMatch;
-    }
-
-  
-
-
-    
-
-   
-
-
     
 }
