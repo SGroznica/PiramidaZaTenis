@@ -37,7 +37,7 @@ Potrebno je ručno kreirati bazu
         
         
         <mapping class="piramidazatenis.model.Igrac" />
-        <mapping class="piramidazatenis.model.Red" />
+        <!--<mapping class="piramidazatenis.model.Red" /> -->
         <mapping class="piramidazatenis.model.TennisMatch" />
         
         

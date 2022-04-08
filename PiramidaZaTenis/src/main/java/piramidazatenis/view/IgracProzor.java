@@ -81,7 +81,7 @@ public class IgracProzor extends javax.swing.JFrame {
         lstTennisMatch = new javax.swing.JList<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtBrojmobitela1 = new javax.swing.JTextField();
+        txtRed = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -209,7 +209,7 @@ public class IgracProzor extends javax.swing.JFrame {
                         .addComponent(txtBrojmobitela, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtOib, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtBrojmobitela1, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addComponent(txtRed, javax.swing.GroupLayout.Alignment.LEADING))
                     .addComponent(jLabel2)
                     .addComponent(txtPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
@@ -250,14 +250,14 @@ public class IgracProzor extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtBrojmobitela1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtRed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(24, 24, 24)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(btnKreiraj)
                                     .addComponent(btnPromjeni)
                                     .addComponent(btnObrisi)))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -282,7 +282,7 @@ public class IgracProzor extends javax.swing.JFrame {
         txtPrezime.setText(e.getPrezime());
         txtOib.setText(e.getOib());
         txtBrojmobitela.setText(e.getBrojmobitela());
-        
+        txtRed.setText(e.getRed());
       
         
     }//GEN-LAST:event_lstIgraciValueChanged
@@ -352,6 +352,7 @@ public class IgracProzor extends javax.swing.JFrame {
         e.setPrezime(txtPrezime.getText());
         e.setOib(txtOib.getText());
         e.setBrojmobitela(txtBrojmobitela.getText());
+        e.setRed(txtRed.getText());
        
     }
 
@@ -374,10 +375,10 @@ public class IgracProzor extends javax.swing.JFrame {
     private javax.swing.JList<Igrac> lstIgraci;
     private javax.swing.JList<TennisMatch> lstTennisMatch;
     private javax.swing.JTextField txtBrojmobitela;
-    private javax.swing.JTextField txtBrojmobitela1;
     private javax.swing.JTextField txtIme;
     private javax.swing.JTextField txtOib;
     private javax.swing.JTextField txtPrezime;
+    private javax.swing.JTextField txtRed;
     private javax.swing.JTextField txtUvjet;
     // End of variables declaration//GEN-END:variables
 }

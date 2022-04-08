@@ -27,8 +27,7 @@ public class Igrac {
     @Column(columnDefinition = "char(11)")
     private String oib;
     private String brojmobitela;
-    @ManyToOne
-    private Red red;
+    private String red;
     
   
 
@@ -71,6 +70,16 @@ public class Igrac {
     public void setBrojmobitela(String brojmobitela) {
         this.brojmobitela = brojmobitela;
     }
+
+    public String getRed() {
+        return red;
+    }
+
+    public void setRed(String red) {
+        this.red = red;
+    }
+    
+    
 
     @Override
     public String toString() {
