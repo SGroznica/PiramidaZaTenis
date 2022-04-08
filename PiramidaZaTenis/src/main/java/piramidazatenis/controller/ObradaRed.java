@@ -12,6 +12,7 @@ import piramidazatenis.util.PiramidaZaTenisException;
  *
  * @author stjep
  */
+@Deprecated
 public class ObradaRed extends Obrada<Red>{
 
     @Override

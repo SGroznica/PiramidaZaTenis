@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
  *
  * @author stjep
  */
+
+@Deprecated
 @Entity
 public class Red {
 
