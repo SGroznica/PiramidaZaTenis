@@ -5,7 +5,8 @@
 package piramidazatenis.view;
 
 import piramidazatenis.controller.ObradaIgrac;
-import piramidazatenis.controller.ObradaRed;
+
+import piramidazatenis.model.Igrac;
 import piramidazatenis.util.PiramidaZaTenisUtil;
 
 /**
@@ -14,16 +15,19 @@ import piramidazatenis.util.PiramidaZaTenisUtil;
  */
 public class RedProzor extends javax.swing.JFrame {
 
-    private ObradaRed obrada;
+    private ObradaIgrac obrada;
     
     /**
      * Creates new form RedProzor
      */
     public RedProzor() {
         initComponents();
-        obrada= new ObradaRed();
+        obrada= new ObradaIgrac();
         setTitle(PiramidaZaTenisUtil.getNaslov("Redovi"));
+         
         
+       RedTablica m = new RedTablica(new ObradaIgrac().read());
+       jtRed.setModel(m);
     }
 
     /**
@@ -77,6 +81,11 @@ public class RedProzor extends javax.swing.JFrame {
                 "Broj reda", "Igrač", "Igrač", "Igrač", "Igrač"
             }
         ));
+        jtRed.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtRedMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtRed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -99,6 +108,16 @@ public class RedProzor extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jtRedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtRedMouseClicked
+        RedTablica m = (RedTablica) jtRed.getModel();
+        Igrac i = m.getIgracAt(jtRed.getSelectedRow());
+        
+
+        
+        
+        
+    }//GEN-LAST:event_jtRedMouseClicked
 
     /**
      * @param args the command line arguments
