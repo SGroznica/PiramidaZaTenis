@@ -5,6 +5,7 @@
 package piramidazatenis.controller;
 
 import java.util.List;
+import piramidazatenis.model.Igrac;
 import piramidazatenis.model.TennisMatch;
 import piramidazatenis.util.PiramidaZaTenisException;
 
@@ -18,7 +19,7 @@ public class ObradaTennisMatch extends Obrada<TennisMatch> {
     public List<TennisMatch> read() {
         return session.createQuery("from TennisMatch").list();
     }
-
+    
     @Override
     protected void kontrolaCreate() throws PiramidaZaTenisException {
         
