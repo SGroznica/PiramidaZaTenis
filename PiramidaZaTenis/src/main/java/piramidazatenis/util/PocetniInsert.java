@@ -35,6 +35,16 @@ public class PocetniInsert {
             p.setPrezime(faker.name().lastName());
             p.setBrojmobitela("");
             p.setOib(PiramidaZaTenisUtil.generirajOib());
+            if(i < 30) {
+                p.setRed(String.valueOf(i + 1));
+            } else if(i < 60) {
+                p.setRed(String.valueOf(i-29));
+            } else if(i < 90) {
+                p.setRed(String.valueOf(i - 59));
+            } else {
+                p.setRed(String.valueOf(i-89));
+            }
+           
             session.save(p);
             igraci.add(p);
             System.out.println("Krierao igrača: " + p.getIme() + " " + p.getOib());
