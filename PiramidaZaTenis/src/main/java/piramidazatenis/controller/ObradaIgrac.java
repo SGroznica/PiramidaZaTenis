@@ -4,8 +4,10 @@
  */
 package piramidazatenis.controller;
 
+import java.util.Arrays;
 import java.util.List;
 import piramidazatenis.model.Igrac;
+import piramidazatenis.util.OibValidation;
 import piramidazatenis.util.PiramidaZaTenisException;
 
 /**
@@ -38,12 +40,14 @@ public class ObradaIgrac extends Obrada<Igrac> {
     }
     @Override
     protected void kontrolaCreate() throws PiramidaZaTenisException {
-        
+        kontrolaIme();
+        kontrolaOib();
     }
 
     @Override
     protected void kontrolaUpdate() throws PiramidaZaTenisException {
-       
+       kontrolaIme();
+       kontrolaOib();
     }
 
     @Override
@@ -51,7 +55,27 @@ public class ObradaIgrac extends Obrada<Igrac> {
        
     }
 
+    private void kontrolaIme() throws PiramidaZaTenisException {
+       char[] nedozvoljeno = {'1','2','.'};
+       if(entitet.getIme()!=null){
+           for(int i=0;i<entitet.getIme().length();i++){
+               for(char c: nedozvoljeno){
+                   if(entitet.getIme().charAt(i)==c){
+                       throw new PiramidaZaTenisException("Ime ne smije imati jedan od znakova:\n" + 
+                               Arrays.toString(nedozvoljeno));
+                   }
+               }
+           }
+       }
+        
+    }
     
+    private void kontrolaOib() throws PiramidaZaTenisException {
+        //https://github.com/domagojpa/oib-validation
+        if (!OibValidation.checkOIB(entitet.getOib())) {
+            throw new PiramidaZaTenisException("OIB nije formalno ispravan");
+        }
+    }
 
    
 
