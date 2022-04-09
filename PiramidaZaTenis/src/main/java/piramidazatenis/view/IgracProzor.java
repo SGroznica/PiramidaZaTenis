@@ -4,12 +4,30 @@
  */
 package piramidazatenis.view;
 
+import java.awt.BasicStroke;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.block.BlockBorder;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.chart.title.TextTitle;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 import piramidazatenis.controller.ObradaIgrac;
+import piramidazatenis.controller.ObradaTennisMatch;
 import piramidazatenis.model.Igrac;
 import piramidazatenis.model.TennisMatch;
 import piramidazatenis.util.PiramidaZaTenisException;
@@ -20,35 +38,120 @@ import piramidazatenis.util.PiramidaZaTenisUtil;
  * @author stjep
  */
 public class IgracProzor extends javax.swing.JFrame {
-    
+
     private ObradaIgrac obrada;
+    private ObradaTennisMatch obradaTennisMatch;
+
     /**
      * Creates new form IgracProzor
      */
     public IgracProzor() {
         initComponents();
-        obrada= new ObradaIgrac();
+        obrada = new ObradaIgrac();
+        obradaTennisMatch = new ObradaTennisMatch();
         setTitle(PiramidaZaTenisUtil.getNaslov("Igrači"));
         ucitaj();
-       
+        definirajGraf();
+        //     lstTennisMatch.setCellRenderer(new PrikazIgrac());
+
     }
-    
-    public void ucitaj(){
+
+    //https://zetcode.com/java/jfreechart/
+    private void definirajGraf() {
+
+        XYDataset dataset = createDataset();
+        JFreeChart chart = createChart(dataset);
+
+        ChartPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        chartPanel.setBackground(Color.white);
+        add(chartPanel);
+
+        pack();
+
+        setLocationRelativeTo(null);
+
+        pnlGrafikon.setLayout(new BorderLayout());
+        pnlGrafikon.add(chartPanel, BorderLayout.CENTER);
+        pnlGrafikon.validate();
+
+    }
+
+    private XYDataset createDataset() {
+
+        var series = new XYSeries("2022");
+        series.add(1, 29);
+        series.add(2, 28);
+        series.add(3, 27);
+        series.add(4, 26);
+        series.add(5, 25);
+        series.add(6, 24);
+        series.add(7, 23);
+        series.add(8, 22);
+        series.add(9, 23);
+        series.add(10, 24);
+        series.add(11, 23);
+        series.add(12, 22);
+
+        var dataset = new XYSeriesCollection();
+        dataset.addSeries(series);
+
+        return dataset;
+    }
+
+    private JFreeChart createChart(XYDataset dataset) {
+
+        JFreeChart chart = ChartFactory.createXYLineChart(
+                "Napredak igrača",
+                "Kolo",
+                "Red",
+                dataset,
+                PlotOrientation.VERTICAL,
+                true,
+                true,
+                false
+        );
+
+        XYPlot plot = chart.getXYPlot();
+
+        var renderer = new XYLineAndShapeRenderer();
+        renderer.setSeriesPaint(0, Color.RED);
+        renderer.setSeriesStroke(0, new BasicStroke(1));
+
+        plot.setRenderer(renderer);
+        plot.setBackgroundPaint(Color.white);
+
+        plot.setRangeGridlinesVisible(true);
+        plot.setRangeGridlinePaint(Color.BLACK);
+
+        plot.setDomainGridlinesVisible(true);
+        plot.setDomainGridlinePaint(Color.BLACK);
+
+        chart.getLegend().setFrame(BlockBorder.NONE);
+
+        chart.setTitle(new TextTitle("Pomicanje po redovima",
+                new Font("Serif", java.awt.Font.BOLD, 11)
+        )
+        );
+
+        return chart;
+    }
+
+    public void ucitaj() {
         DefaultListModel<Igrac> m = new DefaultListModel<>();
         List<Igrac> igraci = obrada.read();
-        if(chbPrezime.isSelected()){
-            igraci=obrada.readPocetakPrezimena(txtUvjet.getText().trim());
-        }else{
-          igraci = obrada.read(txtUvjet.getText().trim());
+        if (chbPrezime.isSelected()) {
+            igraci = obrada.readPocetakPrezimena(txtUvjet.getText().trim());
+        } else {
+            igraci = obrada.read(txtUvjet.getText().trim());
         }
-        
-        for (Igrac i: igraci){
+
+        for (Igrac i : igraci) {
             m.addElement(i);
         }
         lstIgraci.setModel(m);
-        
+
     }
-   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -82,6 +185,7 @@ public class IgracProzor extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtRed = new javax.swing.JTextField();
+        pnlGrafikon = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -146,8 +250,8 @@ public class IgracProzor extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Traži po imenu, prezimenu ili OIB-u.");
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel5.setText("Traži po imenu, prezimenu ili OIB-u.");
 
         chbPrezime.setText("Početak prezimena");
 
@@ -188,11 +292,22 @@ public class IgracProzor extends javax.swing.JFrame {
 
         jLabel7.setText("Red");
 
+        javax.swing.GroupLayout pnlGrafikonLayout = new javax.swing.GroupLayout(pnlGrafikon);
+        pnlGrafikon.setLayout(pnlGrafikonLayout);
+        pnlGrafikonLayout.setHorizontalGroup(
+            pnlGrafikonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 435, Short.MAX_VALUE)
+        );
+        pnlGrafikonLayout.setVerticalGroup(
+            pnlGrafikonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,11 +328,13 @@ public class IgracProzor extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(txtPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addGap(58, 58, 58))
+                .addGap(18, 18, 18)
+                .addComponent(pnlGrafikon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,39 +342,43 @@ public class IgracProzor extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtOib, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtBrojmobitela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtRed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(24, 24, 24)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnKreiraj)
-                                    .addComponent(btnPromjeni)
-                                    .addComponent(btnObrisi)))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(18, Short.MAX_VALUE))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(pnlGrafikon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(45, 45, 45)
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jLabel3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtOib, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jLabel4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtBrojmobitela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel7)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtRed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(24, 24, 24)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnKreiraj)
+                                .addComponent(btnPromjeni)
+                                .addComponent(btnObrisi)))))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -283,23 +404,30 @@ public class IgracProzor extends javax.swing.JFrame {
         txtOib.setText(e.getOib());
         txtBrojmobitela.setText(e.getBrojmobitela());
         txtRed.setText(e.getRed());
-      
-        
+
+        DefaultListModel<TennisMatch> tenius = new DefaultListModel<>();
+        List<TennisMatch> tm = obradaTennisMatch.read();
+        for (TennisMatch i : tm) {
+            if(i.getIgrac1() == e || i.getIgrac2() == e) {
+                tenius.addElement(i);
+            }
+        }
+        lstTennisMatch.setModel(tenius);
     }//GEN-LAST:event_lstIgraciValueChanged
 
     private void btnKreirajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKreirajActionPerformed
-       try {
+        try {
             obrada.setEntitet(new Igrac());
             preuzmiVrijednosti();
             obrada.create();
             ucitaj();
         } catch (PiramidaZaTenisException ex) {
             JOptionPane.showMessageDialog(getRootPane(), ex.getPoruka());
-        } 
+        }
     }//GEN-LAST:event_btnKreirajActionPerformed
 
     private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
-       if (obrada.getEntitet() == null) {
+        if (obrada.getEntitet() == null) {
             JOptionPane.showMessageDialog(getRootPane(), "Prvo odaberite stavku");
             return;
         }
@@ -314,17 +442,17 @@ public class IgracProzor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPromjeniActionPerformed
 
     private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiActionPerformed
-       if (obrada.getEntitet()== null) {
+        if (obrada.getEntitet() == null) {
             JOptionPane.showMessageDialog(getRootPane(), "Prvo odaberite stavku");
             return;
         }
-        
-        if(JOptionPane.showConfirmDialog(
+
+        if (JOptionPane.showConfirmDialog(
                 getRootPane(),
-                "Sigurno obrisati \"" + obrada.getEntitet().getPrezime() + "\"?", 
-                "Brisanje", 
-                JOptionPane.YES_NO_OPTION, 
-                JOptionPane.QUESTION_MESSAGE)==JOptionPane.NO_OPTION){
+                "Sigurno obrisati \"" + obrada.getEntitet().getPrezime() + "\"?",
+                "Brisanje",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE) == JOptionPane.NO_OPTION) {
             return;
         }
 
@@ -341,7 +469,7 @@ public class IgracProzor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTraziActionPerformed
 
     private void txtUvjetKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUvjetKeyPressed
-       if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             ucitaj();
         }
     }//GEN-LAST:event_txtUvjetKeyPressed
@@ -353,7 +481,7 @@ public class IgracProzor extends javax.swing.JFrame {
         e.setOib(txtOib.getText());
         e.setBrojmobitela(txtBrojmobitela.getText());
         e.setRed(txtRed.getText());
-       
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -374,6 +502,7 @@ public class IgracProzor extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JList<Igrac> lstIgraci;
     private javax.swing.JList<TennisMatch> lstTennisMatch;
+    private javax.swing.JPanel pnlGrafikon;
     private javax.swing.JTextField txtBrojmobitela;
     private javax.swing.JTextField txtIme;
     private javax.swing.JTextField txtOib;
