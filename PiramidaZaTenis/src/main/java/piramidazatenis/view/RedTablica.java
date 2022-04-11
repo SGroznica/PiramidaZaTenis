@@ -13,46 +13,52 @@ import piramidazatenis.model.Igrac;
  * @author stjep
  */
 public class RedTablica extends AbstractTableModel {
-
-    private List<Igrac> igraci;    
-
-  
     
-    public RedTablica(List<Igrac> igraci){
-        this.igraci=igraci;
+    private List<Igrac> igraci;
+
+    public RedTablica(List<Igrac> igraci) {
+        this.igraci = igraci;
     }
-    
+
     @Override
     public int getRowCount() {
-         return igraci==null ? 0 : igraci.size();
+        return 30;
     }
 
     @Override
     public int getColumnCount() {
-        return 5;
+        return 4;
     }
 
     @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {
-        Igrac i = igraci.get(rowIndex);
-         Object value = "??";
+    public Object getValueAt(int  rowIndex, int columnIndex) {
+        int x = rowIndex * 4; 
+        Igrac i = igraci.get(x+ columnIndex);
+        Object value = "??";
+        
         switch (columnIndex) {
-            case 0:     
-           for(int j=0; j<4 ;j++) {
-               if((i.getRed().contains("1"))) {
-                value=i.getIme() + " " + i.getPrezime();
+            case 0:
+                value = i.getIme() + " " + i.getRed();
+            case 1:
+                value = i.getIme() + " " + i.getRed();
                 break;
-             }
-        }
-                
-         
-        }
+
+            case 2:
+                value = i.getIme() + " " + i.getRed();
+                break;
+
+            case 3:
+                value = i.getIme() + " " + i.getRed();
+                break;
+ 
+ }
+ 
+
         return value;
     }
-    
-    
-     public Igrac getIgracAt(int red){
+
+    public Igrac getIgracAt(int red) {
         return igraci.get(red);
     }
-    
+
 }
