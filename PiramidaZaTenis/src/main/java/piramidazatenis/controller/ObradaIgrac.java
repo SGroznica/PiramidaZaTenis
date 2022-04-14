@@ -7,6 +7,7 @@ package piramidazatenis.controller;
 import java.util.Arrays;
 import java.util.List;
 import piramidazatenis.model.Igrac;
+import piramidazatenis.model.TennisMatch;
 import piramidazatenis.util.OibValidation;
 import piramidazatenis.util.PiramidaZaTenisException;
 
@@ -16,6 +17,14 @@ import piramidazatenis.util.PiramidaZaTenisException;
  */
 public class ObradaIgrac extends Obrada<Igrac> {
 
+   public List<TennisMatch> getMecevi(){
+       return session.createQuery("from TennisMatch t where t.igrac1=:igrac or t.igrac2=:igrac "
+               + " order by t.datumigranja desc")
+               .setParameter("igrac", entitet)
+               .setMaxResults(12)
+               .list();
+   }
+
     @Override
     public List<Igrac> read() {
        return session.createQuery("from Igrac").list();
@@ -24,7 +33,7 @@ public class ObradaIgrac extends Obrada<Igrac> {
      public List<Igrac> read(String uvjet) {
         return session.createQuery("from Igrac p "
                 + " where concat(p.ime,' ',p.prezime,' ',ifnull(p.oib,'')) "
-                + " like :uvjet order by p.prezime, p.ime")
+                + " like :uvjet order by p.red")
                 .setParameter("uvjet","%" + uvjet + "%")
                 .setMaxResults(50)
                 .list();
@@ -77,7 +86,6 @@ public class ObradaIgrac extends Obrada<Igrac> {
         }
     }
 
-   
 
   
 }

@@ -16,18 +16,23 @@ import piramidazatenis.util.PiramidaZaTenisUtil;
 public class RedProzor extends javax.swing.JFrame {
 
     private ObradaIgrac obrada;
-    
+
     /**
      * Creates new form RedProzor
      */
     public RedProzor() {
         initComponents();
-        obrada= new ObradaIgrac();
+        obrada = new ObradaIgrac();
         setTitle(PiramidaZaTenisUtil.getNaslov("Redovi"));
-         
-        
-       RedTablica m = new RedTablica(new ObradaIgrac().read());
-       jtRed.setModel(m);
+
+        RedTablica m = new RedTablica(new ObradaIgrac().read());
+
+        jtRed.setModel(m);
+
+        jtRed.getColumnModel().getColumn(0).setHeaderValue("Igrač");
+        jtRed.getColumnModel().getColumn(1).setHeaderValue("Igrač 2");
+        jtRed.getColumnModel().getColumn(2).setHeaderValue("Igrač 3");
+        jtRed.getColumnModel().getColumn(3).setHeaderValue("Igrač 4");
     }
 
     /**
@@ -112,17 +117,13 @@ public class RedProzor extends javax.swing.JFrame {
     private void jtRedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtRedMouseClicked
         RedTablica m = (RedTablica) jtRed.getModel();
         Igrac i = m.getIgracAt(jtRed.getSelectedRow());
-        
 
-        
-        
-        
+
     }//GEN-LAST:event_jtRedMouseClicked
 
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;

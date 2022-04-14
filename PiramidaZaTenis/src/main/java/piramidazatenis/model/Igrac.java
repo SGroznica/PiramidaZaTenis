@@ -4,14 +4,11 @@
  */
 package piramidazatenis.model;
 
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 
 
 
@@ -27,7 +24,7 @@ public class Igrac {
     @Column(columnDefinition = "char(11)")
     private String oib;
     private String brojmobitela;
-    private String red;
+    private int red;
     
   
 
@@ -71,11 +68,11 @@ public class Igrac {
         this.brojmobitela = brojmobitela;
     }
 
-    public String getRed() {
+    public int getRed() {
         return red;
     }
 
-    public void setRed(String red) {
+    public void setRed(int red) {
         this.red = red;
     }
     

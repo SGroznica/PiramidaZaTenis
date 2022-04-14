@@ -31,6 +31,7 @@ public class TennisMatch {
     private String rezultat;
     @OneToOne
     private Igrac pobjednik;
+    private int red;
     
     public Long getSifra() {
         return sifra;
@@ -88,6 +89,14 @@ public class TennisMatch {
 
     public void setPobjednik(Igrac pobjednik) {
         this.pobjednik = pobjednik;
+    }
+
+    public int getRed() {
+        return red;
+    }
+
+    public void setRed(int red) {
+        this.red = red;
     }
 
    

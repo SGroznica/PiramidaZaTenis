@@ -9,8 +9,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
@@ -51,7 +49,7 @@ public class IgracProzor extends javax.swing.JFrame {
         obradaTennisMatch = new ObradaTennisMatch();
         setTitle(PiramidaZaTenisUtil.getNaslov("Igrači"));
         ucitaj();
-        definirajGraf();
+        //definirajGraf();
         //     lstTennisMatch.setCellRenderer(new PrikazIgrac());
 
     }
@@ -79,20 +77,17 @@ public class IgracProzor extends javax.swing.JFrame {
 
     private XYDataset createDataset() {
 
-        var series = new XYSeries("2022");
-        series.add(1, 29);
-        series.add(2, 28);
-        series.add(3, 27);
-        series.add(4, 26);
-        series.add(5, 25);
-        series.add(6, 24);
-        series.add(7, 23);
-        series.add(8, 22);
-        series.add(9, 23);
-        series.add(10, 24);
-        series.add(11, 23);
-        series.add(12, 22);
+        
+        
 
+        var series = new XYSeries("2022");
+        int b=1;
+        for(TennisMatch tm : obrada.getMecevi()){
+            System.out.println(tm.getRed());
+            series.add(b++, tm.getRed());
+        }
+        
+    
         var dataset = new XYSeriesCollection();
         dataset.addSeries(series);
 
@@ -403,7 +398,7 @@ public class IgracProzor extends javax.swing.JFrame {
         txtPrezime.setText(e.getPrezime());
         txtOib.setText(e.getOib());
         txtBrojmobitela.setText(e.getBrojmobitela());
-        txtRed.setText(e.getRed());
+        txtRed.setText(String.valueOf(e.getRed()));
 
         DefaultListModel<TennisMatch> tenius = new DefaultListModel<>();
         List<TennisMatch> tm = obradaTennisMatch.read();
@@ -413,6 +408,8 @@ public class IgracProzor extends javax.swing.JFrame {
             }
         }
         lstTennisMatch.setModel(tenius);
+        
+        definirajGraf();
     }//GEN-LAST:event_lstIgraciValueChanged
 
     private void btnKreirajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKreirajActionPerformed
@@ -475,12 +472,12 @@ public class IgracProzor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUvjetKeyPressed
 
     private void preuzmiVrijednosti() {
-        var e = obrada.getEntitet();
+         var e = obrada.getEntitet();
         e.setIme(txtIme.getText());
         e.setPrezime(txtPrezime.getText());
         e.setOib(txtOib.getText());
         e.setBrojmobitela(txtBrojmobitela.getText());
-        e.setRed(txtRed.getText());
+        e.setRed(Integer.parseInt(txtRed.getText()));
 
     }
 

@@ -4,6 +4,7 @@
  */
 package piramidazatenis.view;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import piramidazatenis.model.Igrac;
@@ -15,8 +16,12 @@ import piramidazatenis.model.Igrac;
 public class RedTablica extends AbstractTableModel {
     
     private List<Igrac> igraci;
+    private int red;
 
     public RedTablica(List<Igrac> igraci) {
+        red=1;
+        
+        
         this.igraci = igraci;
     }
 
@@ -32,29 +37,49 @@ public class RedTablica extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int  rowIndex, int columnIndex) {
-        int x = rowIndex * 4; 
-        Igrac i = igraci.get(x+ columnIndex);
-        Object value = "??";
         
-        switch (columnIndex) {
-            case 0:
-                value = i.getIme() + " " + i.getRed();
-            case 1:
-                value = i.getIme() + " " + i.getRed();
-                break;
+        // 0 0 1
+        // 0 1 1
+        // 0 2 1
+        // 0 3 1
+        
+        // 1 0 2
+        // 1 1 2
+        // 1 2 2
+        // 1 3 2
+        Object value = "??";
+try {
+     List<Igrac> igraciReda = igraciReda();
+        Igrac i = igraciReda.get(columnIndex);
+        
+        
+     
+        value = i.getIme() + " " + i.getRed();
+       
+        } catch (Exception e) {
+            value="Nešto ne valja";
+        }
 
-            case 2:
-                value = i.getIme() + " " + i.getRed();
-                break;
-
-            case 3:
-                value = i.getIme() + " " + i.getRed();
-                break;
- 
- }
- 
+       
+   if(columnIndex==3){
+            red++;
+            System.out.println(red);
+        }
+          
+              
 
         return value;
+    }
+    
+    private List<Igrac> igraciReda(){
+        List<Igrac> igraci = new ArrayList<>();
+        for(Igrac i : this.igraci){
+            if(i.getRed()==red){
+                igraci.add(i);
+            }
+        }
+        System.out.println("Ukupno: " + igraci.size());
+        return igraci;
     }
 
     public Igrac getIgracAt(int red) {

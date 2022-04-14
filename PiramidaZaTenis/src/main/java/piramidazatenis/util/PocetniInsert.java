@@ -26,7 +26,7 @@ public class PocetniInsert {
     
    
     
-    private static List<Igrac> generirajIgrace(Faker faker, Session session){
+     private static List<Igrac> generirajIgrace(Faker faker, Session session){
         List<Igrac> igraci = new ArrayList();
         Igrac p;
         for(int i = 0; i<120; i++){
@@ -36,13 +36,13 @@ public class PocetniInsert {
             p.setBrojmobitela("");
             p.setOib(PiramidaZaTenisUtil.generirajOib());
             if(i < 30) {
-                p.setRed(String.valueOf(i + 1));
+                p.setRed(i + 1);
             } else if(i < 60) {
-                p.setRed(String.valueOf(i-29));
+                p.setRed(i-29);
             } else if(i < 90) {
-                p.setRed(String.valueOf(i - 59));
+                p.setRed(i - 59);
             } else {
-                p.setRed(String.valueOf(i-89));
+                p.setRed(i-89);
             }
            
             session.save(p);
@@ -50,7 +50,6 @@ public class PocetniInsert {
             System.out.println("Krierao igrača: " + p.getIme() + " " + p.getOib());
         }
         return igraci;
-        
         
     }
     
@@ -61,15 +60,17 @@ public class PocetniInsert {
         List<Igrac> igraci = generirajIgrace(faker, session);
         
         TennisMatch tm;
-        
+        Igrac i;
             for (int j = 0; j < 15; j++) {
                 tm = new TennisMatch();
                 Collections.shuffle(igraci);
-                tm.setIgrac1(igraci.get((int) Math.random() * (igraci.size() - 1)));
+                i = igraci.get((int) Math.random() * (igraci.size() - 1));
+                tm.setIgrac1(i);
                 Collections.shuffle(igraci);
                 tm.setIgrac2(igraci.get((int) Math.random() * (igraci.size() - 26)));
                 tm.setDatumigranja(new Date());
                 tm.setTeren(faker.team().name());
+                tm.setRed(i.getRed());
                 session.save(tm);
                 System.out.println("Kreirao meč");
             }
