@@ -75,8 +75,6 @@ public class Igrac {
     public void setRed(int red) {
         this.red = red;
     }
-    
-    
 
     @Override
     public String toString() {

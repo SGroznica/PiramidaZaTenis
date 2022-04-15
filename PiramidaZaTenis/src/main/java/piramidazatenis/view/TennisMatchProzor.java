@@ -45,8 +45,8 @@ public class TennisMatchProzor extends javax.swing.JFrame {
 
     }
     
-    private void ucitajIgrace(){
-       
+    private void ucitajIgrace() {
+
         DefaultComboBoxModel<Igrac> ig = new DefaultComboBoxModel<>();
         Igrac igrac = new Igrac();
         igrac.setSifra(Long.valueOf(0));
@@ -54,13 +54,18 @@ public class TennisMatchProzor extends javax.swing.JFrame {
         igrac.setPrezime("odabrano");
         ig.addElement(igrac);
         new ObradaIgrac().read().forEach(s -> {
-            ig.addElement(s);
+            if (s.getRed() != 1) {
+                ig.addElement(s);
+            }
+
         });
         cmbNapada.setModel(ig);
-        
-        
-         DefaultComboBoxModel<Igrac> ig1 = new DefaultComboBoxModel<>();
-        Igrac igrac1=new Igrac();
+
+    }
+
+    private void ucitajIgrace1() {
+        DefaultComboBoxModel<Igrac> ig1 = new DefaultComboBoxModel<>();
+        Igrac igrac1 = new Igrac();
         igrac1.setSifra(Long.valueOf(0));
         igrac1.setIme("Nije");
         igrac1.setPrezime("odabrano");
@@ -70,8 +75,21 @@ public class TennisMatchProzor extends javax.swing.JFrame {
         });
         cmbBrani.setModel(ig1);
     }
+
+    private void ucitajPobjednika(){
+        DefaultComboBoxModel<Igrac> ig1 = new DefaultComboBoxModel<>();
+        Igrac igrac1 = new Igrac();
+        igrac1.setSifra(Long.valueOf(0));
+        igrac1.setIme("Nije");
+        igrac1.setPrezime("odabrano");
+        ig1.addElement(igrac1);
+        Igrac napadac = (Igrac) cmbNapada.getSelectedItem();
+        Igrac brani = (Igrac) cmbBrani.getSelectedItem();
+        ig1.addElement(napadac);
+        ig1.addElement(brani);
+        cmbPobjednik.setModel(ig1);
     
-    
+    }
     public void ucitaj() {
         DefaultListModel<TennisMatch> m = new DefaultListModel<>();
         List<TennisMatch> tenismec = obrada.read();
@@ -143,7 +161,19 @@ public class TennisMatchProzor extends javax.swing.JFrame {
             }
         });
 
+        cmbNapada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbNapadaActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("Brani:");
+
+        cmbBrani.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbBraniActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Datum igranja");
 
@@ -309,6 +339,28 @@ public class TennisMatchProzor extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(getRootPane(), ex.getPoruka());
         }
     }//GEN-LAST:event_btnObrisiActionPerformed
+
+    private void cmbNapadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbNapadaActionPerformed
+        if (cmbNapada.getSelectedIndex() == 0) {
+            ucitajIgrace1();
+        }
+        Igrac napadac = (Igrac) cmbNapada.getSelectedItem();
+        DefaultComboBoxModel<Igrac> ig = new DefaultComboBoxModel<>();
+        ObradaIgrac oi = new ObradaIgrac();
+        List<Igrac> brani = oi.read();
+        for (Igrac i : brani) {
+            if (napadac.getRed() == i.getRed() - 1) {
+                ig.addElement(i);
+            }
+        }
+        cmbBrani.setModel(ig);
+        
+        ucitajPobjednika();
+    }//GEN-LAST:event_cmbNapadaActionPerformed
+
+    private void cmbBraniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbBraniActionPerformed
+        ucitajPobjednika();
+    }//GEN-LAST:event_cmbBraniActionPerformed
 
     private void preuzmiVrijednosti() {
         var e = obrada.getEntitet();
