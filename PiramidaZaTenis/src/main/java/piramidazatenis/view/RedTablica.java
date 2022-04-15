@@ -15,75 +15,84 @@ import piramidazatenis.model.Igrac;
  */
 public class RedTablica extends AbstractTableModel {
     
-    private List<Igrac> igraci;
-    private int red;
+    private final List<Red> redovi;
 
     public RedTablica(List<Igrac> igraci) {
-        red=1;
-        
-        
-        this.igraci = igraci;
+        this.redovi = definirajRedove(igraci);
+    }
+
+    private List<Red> definirajRedove(List<Igrac> igraci) {
+        List<Red> redoviLista = new ArrayList<>();
+        int red = 1;
+        Red r;
+        List<Igrac> igraciReda;
+        while (true) {
+            r = new Red();
+            igraciReda = new ArrayList<>();
+            for (Igrac i : igraci) {
+                if (i.getRed() == red) {
+                    igraciReda.add(i);
+                }
+                if (igraciReda.size() == 4) {
+                    break;
+                }
+            }
+            if (igraciReda.isEmpty()) {
+                break;
+            }
+            r.setRed(red++);
+            r.setIgraci(igraciReda);
+            redoviLista.add(r);
+
+        }
+        return redoviLista;
     }
 
     @Override
     public int getRowCount() {
-        return 30;
+        return redovi.size();
     }
 
     @Override
     public int getColumnCount() {
         return 4;
     }
+   
+    public Igrac getIgracAt(int rowIndex, int columnIndex){
+        return redovi.get(rowIndex).getIgraci().get(columnIndex);
+    }
 
     @Override
-    public Object getValueAt(int  rowIndex, int columnIndex) {
-        
-        // 0 0 1
-        // 0 1 1
-        // 0 2 1
-        // 0 3 1
-        
-        // 1 0 2
-        // 1 1 2
-        // 1 2 2
-        // 1 3 2
-        Object value = "??";
-try {
-     List<Igrac> igraciReda = igraciReda();
-        Igrac i = igraciReda.get(columnIndex);
-        
-        
-     
-        value = i.getIme() + " " + i.getRed();
-       
+    public Object getValueAt(int rowIndex, int columnIndex) {
+        Object value="??";
+        try {
+            value = redovi.get(rowIndex).getIgraci().get(columnIndex).getIme() + " " + redovi.get(rowIndex).getIgraci().get(columnIndex).getPrezime();
         } catch (Exception e) {
-            value="Nešto ne valja";
         }
-
-       
-   if(columnIndex==3){
-            red++;
-            System.out.println(red);
-        }
-          
-              
-
         return value;
     }
-    
-    private List<Igrac> igraciReda(){
-        List<Igrac> igraci = new ArrayList<>();
-        for(Igrac i : this.igraci){
-            if(i.getRed()==red){
-                igraci.add(i);
-            }
-        }
-        System.out.println("Ukupno: " + igraci.size());
-        return igraci;
-    }
 
-    public Igrac getIgracAt(int red) {
-        return igraci.get(red);
+    private class Red {
+
+        private int red;
+        private List<Igrac> igraci;
+
+        public int getRed() {
+            return red;
+        }
+
+        public void setRed(int red) {
+            this.red = red;
+        }
+
+        public List<Igrac> getIgraci() {
+            return igraci;
+        }
+
+        public void setIgraci(List<Igrac> igraci) {
+            this.igraci = igraci;
+        }
+
     }
 
 }

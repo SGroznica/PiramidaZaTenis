@@ -116,8 +116,9 @@ public class RedProzor extends javax.swing.JFrame {
 
     private void jtRedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtRedMouseClicked
         RedTablica m = (RedTablica) jtRed.getModel();
-        Igrac i = m.getIgracAt(jtRed.getSelectedRow());
-
+        Igrac i = m.getIgracAt(jtRed.getSelectedRow(), jtRed.getSelectedColumn());
+       
+        System.out.println(i.getPrezime());
 
     }//GEN-LAST:event_jtRedMouseClicked
 
