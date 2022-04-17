@@ -5,7 +5,6 @@
 package piramidazatenis.controller;
 
 import java.util.List;
-import piramidazatenis.model.Igrac;
 import piramidazatenis.model.TennisMatch;
 import piramidazatenis.util.PiramidaZaTenisException;
 
