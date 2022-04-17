@@ -66,7 +66,7 @@ public class RedTablica extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         Object value="??";
         try {
-            value = redovi.get(rowIndex).getIgraci().get(columnIndex).getIme() + " " + redovi.get(rowIndex).getIgraci().get(columnIndex).getPrezime();
+            value = redovi.get(rowIndex).getIgraci().get(columnIndex).getRed() + " " + redovi.get(rowIndex).getIgraci().get(columnIndex).getIme() + " " + redovi.get(rowIndex).getIgraci().get(columnIndex).getPrezime();
         } catch (Exception e) {
         }
         return value;
