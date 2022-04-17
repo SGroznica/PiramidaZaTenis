@@ -49,8 +49,7 @@ public class IgracProzor extends javax.swing.JFrame {
         obradaTennisMatch = new ObradaTennisMatch();
         setTitle(PiramidaZaTenisUtil.getNaslov("Igrači"));
         ucitaj();
-        //definirajGraf();
-        //     lstTennisMatch.setCellRenderer(new PrikazIgrac());
+     
 
     }
 
@@ -400,14 +399,14 @@ public class IgracProzor extends javax.swing.JFrame {
         txtBrojmobitela.setText(e.getBrojmobitela());
         txtRed.setText(String.valueOf(e.getRed()));
 
-        DefaultListModel<TennisMatch> tenius = new DefaultListModel<>();
+        DefaultListModel<TennisMatch> tenis = new DefaultListModel<>();
         List<TennisMatch> tm = obradaTennisMatch.read();
         for (TennisMatch i : tm) {
             if(i.getIgrac1() == e || i.getIgrac2() == e) {
-                tenius.addElement(i);
+                tenis.addElement(i);
             }
         }
-        lstTennisMatch.setModel(tenius);
+        lstTennisMatch.setModel(tenis);
         
         definirajGraf();
     }//GEN-LAST:event_lstIgraciValueChanged
