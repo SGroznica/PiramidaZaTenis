@@ -31,11 +31,15 @@ public class PocetniInsert {
      private static List<Igrac> generirajIgrace(Faker faker, Session session){
         List<Igrac> igraci = new ArrayList();
         Igrac p;
+        Random rnd = new Random();
+       
+        
         for(int i = 0; i<120; i++){
+            int number = 10000000 + rnd.nextInt(90000000);
             p = new Igrac();
             p.setIme(faker.name().firstName());
             p.setPrezime(faker.name().lastName());
-            p.setBrojmobitela("");
+            p.setBrojmobitela("09" + number);
             p.setOib(PiramidaZaTenisUtil.generirajOib());
             if(i < 30) {
                 p.setRed(i + 1);
@@ -76,7 +80,7 @@ public class PocetniInsert {
         
         TennisMatch tm;
         Igrac i;
-            for (int j = 0; j < 15; j++) {
+            for (int j = 0; j < 30; j++) {
                 tm = new TennisMatch();
                 Collections.shuffle(igraci);
                 i = igraci.get((int) Math.random() * (igraci.size() - 1));
@@ -85,7 +89,8 @@ public class PocetniInsert {
                 tm.setIgrac2(igraci.get((int) Math.random() * (igraci.size() - 26)));
                 tm.setDatumigranja(pocetakMatcha());
                 tm.setTeren(faker.team().name());
-                tm.setRed(i.getRed());
+                tm.setRed(tm.getIgrac2().getRed());
+                tm.setPobjednik(tm.getIgrac1());
                 session.save(tm);
                 System.out.println("Kreirao meč");
             }
