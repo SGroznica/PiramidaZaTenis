@@ -50,12 +50,14 @@ public class ObradaIgrac extends Obrada<Igrac> {
     @Override
     protected void kontrolaCreate() throws PiramidaZaTenisException {
         kontrolaIme();
+        kontrolaPrezime();
         kontrolaOib();
     }
 
     @Override
     protected void kontrolaUpdate() throws PiramidaZaTenisException {
        kontrolaIme();
+       kontrolaPrezime();
        kontrolaOib();
     }
 
@@ -63,20 +65,17 @@ public class ObradaIgrac extends Obrada<Igrac> {
     protected void kontrolaDelete() throws PiramidaZaTenisException {
        
     }
-
+     
     private void kontrolaIme() throws PiramidaZaTenisException {
-       char[] nedozvoljeno = {'1','2','.'};
-       if(entitet.getIme()!=null){
-           for(int i=0;i<entitet.getIme().length();i++){
-               for(char c: nedozvoljeno){
-                   if(entitet.getIme().charAt(i)==c){
-                       throw new PiramidaZaTenisException("Ime ne smije imati jedan od znakova:\n" + 
-                               Arrays.toString(nedozvoljeno));
-                   }
-               }
-           }
-       }
-        
+        if (!entitet.getIme().matches("\\p{L}+")) {
+            throw new PiramidaZaTenisException("Ime mora sadržavati samo slova!");
+        }
+    }
+
+    private void kontrolaPrezime() throws PiramidaZaTenisException {
+        if (!entitet.getPrezime().matches("\\p{L}+")) {
+            throw new PiramidaZaTenisException("Prezime smije samo sadržavati slova i znak: -!");
+        }
     }
     
     private void kontrolaOib() throws PiramidaZaTenisException {
