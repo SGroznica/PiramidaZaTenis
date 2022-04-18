@@ -4,9 +4,7 @@
  */
 package piramidazatenis.view;
 
-import java.time.ZoneId;
 import piramidazatenis.controller.ObradaTennisMatch;
-import piramidazatenis.model.Igrac;
 import piramidazatenis.model.TennisMatch;
 import piramidazatenis.util.PiramidaZaTenisUtil;
 
