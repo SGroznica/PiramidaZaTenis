@@ -26,7 +26,7 @@ import piramidazatenis.util.PiramidaZaTenisUtil;
 public class TennisMatchProzor extends javax.swing.JFrame {
 
     private ObradaTennisMatch obrada;
-   private ObradaIgrac obradaIgrac;
+    private ObradaIgrac obradaIgrac;
 
     /**
      * Creates new form IgracProzor
@@ -44,11 +44,9 @@ public class TennisMatchProzor extends javax.swing.JFrame {
         dpDatum.setSettings(dps);
 
     }
-    
+
     private void ucitajIgrace() {
 
-        
-        
         DefaultComboBoxModel<Igrac> ig = new DefaultComboBoxModel<>();
         Igrac igrac = new Igrac();
         igrac.setSifra(Long.valueOf(0));
@@ -102,7 +100,7 @@ public class TennisMatchProzor extends javax.swing.JFrame {
         lstTennisMatch.setModel(m);
 
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -130,14 +128,10 @@ public class TennisMatchProzor extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         dpDatum = new com.github.lgooddatepicker.components.DatePicker();
         cmbPobjednik = new javax.swing.JComboBox<>();
+        btnDetalji = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        lstTennisMatch.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lstTennisMatchMouseClicked(evt);
-            }
-        });
         lstTennisMatch.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 lstTennisMatchValueChanged(evt);
@@ -190,21 +184,29 @@ public class TennisMatchProzor extends javax.swing.JFrame {
 
         jLabel6.setText("Pobjednik");
 
+        btnDetalji.setText("Detalji meča");
+        btnDetalji.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDetaljiActionPerformed(evt);
+            }
+        });
+        btnDetalji.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnDetaljiKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                    .addComponent(btnDetalji, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnKreiraj)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPromjeni)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnObrisi))
                     .addComponent(jLabel1)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
@@ -217,14 +219,29 @@ public class TennisMatchProzor extends javax.swing.JFrame {
                         .addComponent(txtTeren, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(cmbNapada, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(cmbBrani, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cmbBrani, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnKreiraj)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnPromjeni)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnObrisi)))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnKreiraj)
+                                .addComponent(btnPromjeni)
+                                .addComponent(btnObrisi))
+                            .addComponent(btnDetalji)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -248,14 +265,8 @@ public class TennisMatchProzor extends javax.swing.JFrame {
                         .addGap(5, 5, 5)
                         .addComponent(jLabel6)
                         .addGap(5, 5, 5)
-                        .addComponent(cmbPobjednik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnKreiraj)
-                            .addComponent(btnPromjeni)
-                            .addComponent(btnObrisi)))
-                    .addComponent(jScrollPane1))
-                .addContainerGap())
+                        .addComponent(cmbPobjednik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -270,7 +281,7 @@ public class TennisMatchProzor extends javax.swing.JFrame {
         var e = obrada.getEntitet();
         txtRezultat.setText(e.getRezultat());
         txtTeren.setText(e.getTeren());
-        //txtRed.setText(String.valueOf(e.getIgrac2().getRed()));
+
         if (e.getIgrac1() == null) {
             cmbNapada.setSelectedIndex(0);
         } else {
@@ -288,12 +299,6 @@ public class TennisMatchProzor extends javax.swing.JFrame {
         } else {
             dpDatum.setDate(null);
         }
-        if (e.getPobjednik() == null) {
-            cmbPobjednik.setSelectedIndex(0);
-        } else {
-            cmbPobjednik.setSelectedItem(e.getPobjednik());
-        }
-
     }//GEN-LAST:event_lstTennisMatchValueChanged
 
     private void btnKreirajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKreirajActionPerformed
@@ -301,20 +306,19 @@ public class TennisMatchProzor extends javax.swing.JFrame {
         Igrac napada = (Igrac) cmbNapada.getSelectedItem();
         Igrac brani = (Igrac) cmbBrani.getSelectedItem();
         Igrac pobjendik = (Igrac) cmbPobjednik.getSelectedItem();
-        
-        try {
-           obrada.setEntitet(new TennisMatch()); 
-           
-             if (pobjendik == napada) {
-                napada.setRed(brani.getRed());
-                brani.setRed(brani.getRed()+1);
 
+        try {
+            obrada.setEntitet(new TennisMatch());
+
+            if (pobjendik == napada) {
+                napada.setRed(brani.getRed());
+                brani.setRed(brani.getRed() + 1);
             }
+
             preuzmiVrijednosti();
             obrada.create();
             ucitaj();
-            
-          
+
         } catch (PiramidaZaTenisException ex) {
             JOptionPane.showMessageDialog(getRootPane(), ex.getPoruka());
         }
@@ -381,9 +385,21 @@ public class TennisMatchProzor extends javax.swing.JFrame {
         ucitajPobjednika();
     }//GEN-LAST:event_cmbBraniActionPerformed
 
-    private void lstTennisMatchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstTennisMatchMouseClicked
-        //new DetaljiTennisMatcha().setVisible(true);
-    }//GEN-LAST:event_lstTennisMatchMouseClicked
+    private void btnDetaljiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnDetaljiKeyPressed
+        if (lstTennisMatch.getSelectedValue() == null) {
+            JOptionPane.showMessageDialog(getRootPane(), "Prvo odaberite stavku");
+            return;
+        }
+        new DetaljiTennisMatcha(obrada.getEntitet()).setVisible(true);
+    }//GEN-LAST:event_btnDetaljiKeyPressed
+
+    private void btnDetaljiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetaljiActionPerformed
+        if (lstTennisMatch.getSelectedValue() == null) {
+            JOptionPane.showMessageDialog(getRootPane(), "Prvo odaberite stavku");
+            return;
+        }
+        new DetaljiTennisMatcha(obrada.getEntitet()).setVisible(true);
+    }//GEN-LAST:event_btnDetaljiActionPerformed
 
     private void preuzmiVrijednosti() {
         var e = obrada.getEntitet();
@@ -403,10 +419,13 @@ public class TennisMatchProzor extends javax.swing.JFrame {
         } else {
             e.setDatumigranja(null);
         }
-        //e.setRed(Integer.parseInt(txtRed.getText()));
+        e.setRed(e.getIgrac2().getRed());
+
     }
+    // pero = pero ispisi red pere a ako nije ispisi red marka
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDetalji;
     private javax.swing.JButton btnKreiraj;
     private javax.swing.JButton btnObrisi;
     private javax.swing.JButton btnPromjeni;
