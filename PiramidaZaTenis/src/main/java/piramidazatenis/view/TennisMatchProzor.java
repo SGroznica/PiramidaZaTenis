@@ -116,7 +116,6 @@ public class TennisMatchProzor extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnKreiraj = new javax.swing.JButton();
         btnPromjeni = new javax.swing.JButton();
-        btnObrisi = new javax.swing.JButton();
         cmbNapada = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         cmbBrani = new javax.swing.JComboBox<>();
@@ -152,13 +151,6 @@ public class TennisMatchProzor extends javax.swing.JFrame {
         btnPromjeni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPromjeniActionPerformed(evt);
-            }
-        });
-
-        btnObrisi.setText("Obriši");
-        btnObrisi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnObrisiActionPerformed(evt);
             }
         });
 
@@ -206,42 +198,28 @@ public class TennisMatchProzor extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
                     .addComponent(btnDetalji, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
-                    .addComponent(txtRezultat, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtRezultat, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
                     .addComponent(jLabel6)
-                    .addComponent(cmbPobjednik, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(dpDatum, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtTeren, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(cmbNapada, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dpDatum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtTeren, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                    .addComponent(cmbNapada, 0, 199, Short.MAX_VALUE)
                     .addComponent(jLabel2)
-                    .addComponent(cmbBrani, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnKreiraj)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPromjeni)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnObrisi)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                    .addComponent(cmbBrani, 0, 199, Short.MAX_VALUE)
+                    .addComponent(cmbPobjednik, 0, 199, Short.MAX_VALUE)
+                    .addComponent(btnPromjeni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnKreiraj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnKreiraj)
-                                .addComponent(btnPromjeni)
-                                .addComponent(btnObrisi))
-                            .addComponent(btnDetalji)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -265,8 +243,15 @@ public class TennisMatchProzor extends javax.swing.JFrame {
                         .addGap(5, 5, 5)
                         .addComponent(jLabel6)
                         .addGap(5, 5, 5)
-                        .addComponent(cmbPobjednik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(cmbPobjednik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnKreiraj))
+                    .addComponent(jScrollPane1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPromjeni)
+                    .addComponent(btnDetalji))
+                .addGap(0, 21, Short.MAX_VALUE))
         );
 
         pack();
@@ -340,29 +325,6 @@ public class TennisMatchProzor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnPromjeniActionPerformed
 
-    private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiActionPerformed
-        if (obrada.getEntitet() == null) {
-            JOptionPane.showMessageDialog(getRootPane(), "Prvo odaberite stavku");
-            return;
-        }
-
-        if (JOptionPane.showConfirmDialog(
-                getRootPane(),
-                "Sigurno obrisati \"" + obrada.getEntitet() + "\"?",
-                "Brisanje",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE) == JOptionPane.NO_OPTION) {
-            return;
-        }
-
-        try {
-            obrada.delete();
-            ucitaj();
-        } catch (PiramidaZaTenisException ex) {
-            JOptionPane.showMessageDialog(getRootPane(), ex.getPoruka());
-        }
-    }//GEN-LAST:event_btnObrisiActionPerformed
-
     private void cmbNapadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbNapadaActionPerformed
         if (cmbNapada.getSelectedIndex() == 0) {
             ucitajIgrace1();
@@ -419,15 +381,15 @@ public class TennisMatchProzor extends javax.swing.JFrame {
         } else {
             e.setDatumigranja(null);
         }
-        e.setRed(e.getIgrac2().getRed());
-
+        if(cmbPobjednik.getSelectedItem()==cmbNapada.getSelectedItem()){
+             e.setRed(e.getIgrac2().getRed()-1);
+        }else
+             e.setRed(e.getIgrac2().getRed());
     }
-    // pero = pero ispisi red pere a ako nije ispisi red marka
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDetalji;
     private javax.swing.JButton btnKreiraj;
-    private javax.swing.JButton btnObrisi;
     private javax.swing.JButton btnPromjeni;
     private javax.swing.JComboBox<Igrac> cmbBrani;
     private javax.swing.JComboBox<Igrac> cmbNapada;
