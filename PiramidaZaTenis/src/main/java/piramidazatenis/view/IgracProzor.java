@@ -79,7 +79,7 @@ public class IgracProzor extends javax.swing.JFrame {
         
         
 
-        var series = new XYSeries("2022");
+        var series = new XYSeries("Red");
         int b=1;
         for(TennisMatch tm : obrada.getMecevi()){
             System.out.println(tm.getRed());
@@ -96,7 +96,7 @@ public class IgracProzor extends javax.swing.JFrame {
     private JFreeChart createChart(XYDataset dataset) {
 
         JFreeChart chart = ChartFactory.createXYLineChart(
-                "Napredak igrača",
+                "Piramida 2022",
                 "Kolo",
                 "Red",
                 dataset,
@@ -123,7 +123,7 @@ public class IgracProzor extends javax.swing.JFrame {
 
         chart.getLegend().setFrame(BlockBorder.NONE);
 
-        chart.setTitle(new TextTitle("Pomicanje po redovima",
+        chart.setTitle(new TextTitle("Piramida 2022",
                 new Font("Serif", java.awt.Font.BOLD, 11)
         )
         );
@@ -294,7 +294,7 @@ public class IgracProzor extends javax.swing.JFrame {
         );
         pnlGrafikonLayout.setVerticalGroup(
             pnlGrafikonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 338, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -331,9 +331,9 @@ public class IgracProzor extends javax.swing.JFrame {
                         .addComponent(jLabel6))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(42, 42, 42)
-                .addComponent(pnlGrafikon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addComponent(pnlGrafikon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
@@ -348,7 +348,7 @@ public class IgracProzor extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
-                            .addComponent(pnlGrafikon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(pnlGrafikon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(36, 36, 36)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -377,8 +377,7 @@ public class IgracProzor extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(btnKreiraj)
                                         .addComponent(btnPromjeni)
-                                        .addComponent(btnObrisi))))
-                            .addGap(0, 0, Short.MAX_VALUE))))
+                                        .addComponent(btnObrisi)))))))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
