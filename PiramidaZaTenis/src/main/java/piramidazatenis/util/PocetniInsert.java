@@ -89,7 +89,7 @@ public class PocetniInsert {
                 tm.setIgrac2(igraci.get((int) Math.random() * (igraci.size() - 26)));
                 tm.setDatumigranja(pocetakMatcha());
                 tm.setTeren(faker.team().name());
-                tm.setRed(tm.getIgrac2().getRed());
+                tm.setRed(tm.getIgrac1().getRed());
                 tm.setPobjednik(tm.getIgrac1());
                 session.save(tm);
                 System.out.println("Kreirao meč");

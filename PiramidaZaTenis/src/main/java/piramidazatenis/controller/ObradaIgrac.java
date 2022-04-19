@@ -51,6 +51,7 @@ public class ObradaIgrac extends Obrada<Igrac> {
     protected void kontrolaCreate() throws PiramidaZaTenisException {
         kontrolaIme();
         kontrolaPrezime();
+        kontrolaBrojMobitela();
         kontrolaOib();
     }
 
@@ -58,6 +59,7 @@ public class ObradaIgrac extends Obrada<Igrac> {
     protected void kontrolaUpdate() throws PiramidaZaTenisException {
        kontrolaIme();
        kontrolaPrezime();
+       kontrolaBrojMobitela();
        kontrolaOib();
     }
 
@@ -68,13 +70,19 @@ public class ObradaIgrac extends Obrada<Igrac> {
      
     private void kontrolaIme() throws PiramidaZaTenisException {
         if (!entitet.getIme().matches("\\p{L}+")) {
-            throw new PiramidaZaTenisException("Ime mora sadržavati samo slova!");
+            throw new PiramidaZaTenisException("Ime ne smije sadržavati znakove!");
         }
     }
 
     private void kontrolaPrezime() throws PiramidaZaTenisException {
         if (!entitet.getPrezime().matches("\\p{L}+")) {
-            throw new PiramidaZaTenisException("Prezime smije samo sadržavati slova i znak: -!");
+            throw new PiramidaZaTenisException("Prezime ne smije sadržavati znakove!");
+        }
+    }
+    
+    private void kontrolaBrojMobitela() throws PiramidaZaTenisException {
+        if (!entitet.getBrojmobitela().matches("[0-9]{10}")) {
+            throw new PiramidaZaTenisException("Broj mobitela smije sadržavati samo brojeve");
         }
     }
     
